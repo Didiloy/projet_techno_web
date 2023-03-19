@@ -81,6 +81,8 @@
       <path value="$PROJECT_DIR$/PROJET/vendor/doctrine/migrations" />
       <path value="$PROJECT_DIR$/PROJET/vendor/doctrine/collections" />
       <path value="$PROJECT_DIR$/PROJET/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/PROJET/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/PROJET/vendor/nikic/php-parser" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

@@ -75,6 +75,8 @@
       <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/doctrine/migrations" />
       <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/doctrine/collections" />
       <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/symfony/maker-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/nikic/php-parser" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
