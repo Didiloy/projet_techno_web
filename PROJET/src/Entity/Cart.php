@@ -20,15 +20,18 @@ class Cart
     #[ORM\JoinColumn(nullable: false)]
     private ?User $id_user = null;
 
-    #[ORM\OneToMany(mappedBy: 'cart', targetEntity: Product::class)]
-    private Collection $id_product;
+    #[ORM\ManyToOne(inversedBy: 'cart')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Product $id_product = null;
+//    #[ORM\OneToMany(mappedBy: 'cart', targetEntity: Product::class)]
+//    private Collection $id_product;
 
     #[ORM\Column]
     private ?int $quantity = null;
 
     public function __construct()
     {
-        $this->id_product = new ArrayCollection();
+//        $this->id_product = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -49,34 +52,40 @@ class Cart
     }
 
     /**
-     * @return Collection<int, Product>
+     * @return Product
      */
-    public function getIdProduct(): Collection
+    public function getIdProduct(): Product
     {
         return $this->id_product;
     }
 
-    public function addIdProduct(Product $idProduct): self
+    public function setIdProduct(Product $id_product): self
     {
-        if (!$this->id_product->contains($idProduct)) {
-            $this->id_product->add($idProduct);
-            $idProduct->setCart($this);
-        }
-
+        $this->id_product = $id_product;
         return $this;
     }
 
-    public function removeIdProduct(Product $idProduct): self
-    {
-        if ($this->id_product->removeElement($idProduct)) {
-            // set the owning side to null (unless already changed)
-            if ($idProduct->getCart() === $this) {
-                $idProduct->setCart(null);
-            }
-        }
-
-        return $this;
-    }
+//    public function addIdProduct(Product $idProduct): self
+//    {
+//        if (!$this->id_product->contains($idProduct)) {
+//            $this->id_product->add($idProduct);
+//            $idProduct->setCart($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeIdProduct(Product $idProduct): self
+//    {
+//        if ($this->id_product->removeElement($idProduct)) {
+//            // set the owning side to null (unless already changed)
+//            if ($idProduct->getCart() === $this) {
+//                $idProduct->setCart(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
     public function getQuantity(): ?int
     {

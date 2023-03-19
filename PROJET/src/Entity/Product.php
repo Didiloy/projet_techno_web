@@ -23,8 +23,8 @@ class Product
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\ManyToOne(inversedBy: 'id_product')]
-    private ?Cart $cart = null;
+//    #[ORM\ManyToOne(inversedBy: 'id_product')]
+//    private ?Cart $cart = null;
 
     public function getId(): ?int
     {
@@ -67,15 +67,15 @@ class Product
         return $this;
     }
 
-    public function getCart(): ?Cart
-    {
-        return $this->cart;
-    }
-
-    public function setCart(?Cart $cart): self
-    {
-        $this->cart = $cart;
-
-        return $this;
-    }
+//    public function getCart(): ?Cart
+//    {
+//        return $this->cart;
+//    }
+//
+//    public function setCart(?Cart $cart): self
+//    {
+//        $this->cart = $cart;
+//
+//        return $this;
+//    }
 }
