@@ -29,6 +29,9 @@ class User
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Cart::class)]
     private Collection $cart;
 
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
     public function __construct()
     {
         $this->cart = new ArrayCollection();
@@ -101,6 +104,18 @@ class User
                 $cart->setIdUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }

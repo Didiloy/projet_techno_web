@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -20,6 +21,11 @@ class UserType extends AbstractType
                 [
                     'label' => 'Name',
                     'attr' => ['placeholder' => 'John Doe'],
+                ])
+            ->add('password',
+                PasswordType::class,
+                [
+                    'label' => 'Password',
                 ])
             ->add('birthdate',
                 DateType::class,

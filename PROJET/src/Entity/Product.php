@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'products')]
@@ -25,7 +27,13 @@ class Product
 
 //    #[ORM\ManyToOne(inversedBy: 'id_product')]
 //    private ?Cart $cart = null;
+    #[ORM\OneToMany(mappedBy: 'id_product', targetEntity: Cart::class)]
+    private Collection $cart;
 
+    public function __construct()
+    {
+        $this->cart = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -63,6 +71,28 @@ class Product
     public function setQuantity(int $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function addCart(Cart $cart): self
+    {
+        if (!$this->cart->contains($cart)) {
+            $this->cart->add($cart);
+            $cart->setIdProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): self
+    {
+        if ($this->cart->removeElement($cart)) {
+            // set the owning side to null (unless already changed)
+            if ($cart->getIdProduct() === $this) {
+                $cart->setIdProduct(null);
+            }
+        }
 
         return $this;
     }
