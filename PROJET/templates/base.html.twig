@@ -24,6 +24,10 @@
     {% elseif type == "super-admin" %}
         <p>menu du super-admin</p>
     {% endif %}
-    {% block body %}{% endblock %}
+    {% block body %}
+        <div id="vue">
+            {% block vue %}{% endblock %}
+        </div>
+    {% endblock %}
     </body>
 </html>
