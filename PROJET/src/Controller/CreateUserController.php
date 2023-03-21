@@ -29,6 +29,7 @@ class CreateUserController extends AbstractController
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
+        $form->handleRequest($request);
         //si on recoit le formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
@@ -36,7 +37,7 @@ class CreateUserController extends AbstractController
             $userRepo->save($user);
             $em->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_home', $args);
         }
 
         $args["form"] = $form;

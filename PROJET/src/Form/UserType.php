@@ -38,7 +38,9 @@ class UserType extends AbstractType
                     'label' => 'User type',
                     'attr' => ['placeholder' => 'Client'],
                 ])
-            ->add('save', SubmitType::class)
+            ->add('save',
+                SubmitType::class,
+                ['label' => 'Save'])
         ;
     }
 
