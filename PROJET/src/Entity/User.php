@@ -3,79 +3,103 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Table(name: 'users')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $username = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $birthdate = null;
+    #[ORM\Column]
+    private array $roles = [];
 
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Cart::class)]
     private Collection $cart;
-
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
-
-    public function __construct()
-    {
-        $this->cart = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setName(string $name): self
+    public function setUsername(string $username): self
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->birthdate;
+        return (string) $this->username;
     }
 
-    public function setBirthdate(?\DateTimeInterface $birthdate): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->birthdate = $birthdate;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getType(): ?string
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->type;
+        return $this->password;
     }
 
-    public function setType(string $type): self
+    public function setPassword(string $password): self
     {
-        $this->type = $type;
+        $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     /**
@@ -104,18 +128,6 @@ class User
                 $cart->setIdUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
 
         return $this;
     }

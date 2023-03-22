@@ -11,7 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class CreateUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -31,6 +31,7 @@ class UserType extends AbstractType
                 DateType::class,
                 [
                     'label' => 'Birth date',
+                    'widget' => 'single_text',
                 ])
             ->add('type',
                 TextType::class,
