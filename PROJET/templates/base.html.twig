@@ -14,20 +14,6 @@
         {% endblock %}
     </head>
     <body>
-    <h2>Menu</h2>
-    {% if type == "unidentified" %}
-        <p>Veuillez vous identifier</p>
-    {% elseif type == "client" %}
-        <p>menu du client</p>
-    {% elseif type == "admin" %}
-        <p>menu de l'admin</p>
-    {% elseif type == "super-admin" %}
-        <p>menu du super-admin</p>
-    {% endif %}
-    {% block body %}
-        <div id="vue">
-            {% block vue %}{% endblock %}
-        </div>
-    {% endblock %}
+    {% block body %}{% endblock %}
     </body>
 </html>

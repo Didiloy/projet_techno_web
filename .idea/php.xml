@@ -84,6 +84,9 @@
       <path value="$PROJECT_DIR$/PROJET/vendor/symfony/maker-bundle" />
       <path value="$PROJECT_DIR$/PROJET/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/PROJET/vendor/symfony/web-profiler-bundle" />
+      <path value="$PROJECT_DIR$/PROJET/vendor/sensio/framework-extra-bundle" />
+      <path value="$PROJECT_DIR$/PROJET/vendor/symfony/apache-pack" />
+      <path value="$PROJECT_DIR$/PROJET/vendor/doctrine/annotations" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

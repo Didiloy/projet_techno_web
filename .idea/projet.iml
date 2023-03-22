@@ -78,6 +78,9 @@
       <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/symfony/maker-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/symfony/web-profiler-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/sensio/framework-extra-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/symfony/apache-pack" />
+      <excludeFolder url="file://$MODULE_DIR$/PROJET/vendor/doctrine/annotations" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
