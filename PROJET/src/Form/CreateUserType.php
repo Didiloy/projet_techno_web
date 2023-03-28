@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -34,11 +36,33 @@ class CreateUserType extends AbstractType
                     'widget' => 'single_text',
                 ])
             ->add('roles',
-                TextType::class,
+                CollectionType::class,
                 [
-                    'label' => 'User type',
-                    'attr' => ['placeholder' => 'Client'],
-                ])
+//                    'entry_type' => TextType::class,
+                    'entry_type'   => ChoiceType::class,
+                    'entry_options'  => [
+                        'choices'  => [
+                            'Client' => 'ROLE_CLIENT',
+                            'Admin'     => 'ROLE_ADMIN',
+                            'Super Admin'    => 'ROLE_SUPER_ADMIN',
+                        ],
+                    ],
+                ]
+            )
+//            ->add('roles',
+////                TextType::class,
+////                [
+////                    'label' => 'User type',
+////                    'attr' => ['placeholder' => 'Client'],
+////                ]
+//                ChoiceType::class, [
+//                    'choices'  => [
+//                        'Client' => ["client"],
+//                        'Admin' => ["admin"],
+//                        'Super-Admin' => ["super_admin"],
+//                    ],
+//                ]
+//            )
             ->add('save',
                 SubmitType::class,
                 ['label' => 'Save'])

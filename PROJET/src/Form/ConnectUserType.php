@@ -28,7 +28,7 @@ class ConnectUserType extends AbstractType
                 ])
             ->add('save',
                 SubmitType::class,
-                ['label' => 'Save'])
+                ['label' => 'Connect'])
         ;
     }
 

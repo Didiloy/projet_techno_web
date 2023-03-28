@@ -17,15 +17,12 @@ class UserController extends AbstractController
     #[Route('/create', name: '_create_user')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
-        $type = ['client', 'admin', 'super-admin'];
-        $user_type = $request->request->get('user_type');
         $args = [];
 //        Si le client n'est pas authentifié
 //        if (is_null($user_type) || in_array($user_type, $type)) {
 //            $args["type"] =  "unidentified";
 //            return $this->render("base.html.twig", $args);
 //        }
-        $args["type"] = $user_type;
         $args["titre"] = "Create";
 
         $user = new User();
@@ -78,6 +75,7 @@ class UserController extends AbstractController
         }
 
         $args["form"] = $form;
+        dump($form);
 
         return $this->render('user/userForm.html.twig', $args);
     }
