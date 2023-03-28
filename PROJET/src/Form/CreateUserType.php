@@ -16,7 +16,7 @@ class CreateUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',
+            ->add('username',
                 TextType::class,
                 [
                     'label' => 'Name',
@@ -33,7 +33,7 @@ class CreateUserType extends AbstractType
                     'label' => 'Birth date',
                     'widget' => 'single_text',
                 ])
-            ->add('type',
+            ->add('roles',
                 TextType::class,
                 [
                     'label' => 'User type',

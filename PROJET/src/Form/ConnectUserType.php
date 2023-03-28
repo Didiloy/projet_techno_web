@@ -15,7 +15,7 @@ class ConnectUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',
+            ->add('username',
                 TextType::class,
                 [
                     'label' => 'Name',
