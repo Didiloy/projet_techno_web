@@ -16,25 +16,15 @@ class HomeController extends AbstractController
     {
         $user = $this->getUser()  ;
         if ($user !== null)dump($user);
-        dump($user);
-//        $id = $this->getParameter('monid');
-//        $userRepo = $em->getRepository(User::class);
-//        $user = $userRepo->find($id);
 
-
-
-
-        $type = ['client', 'admin', 'super-admin'];
-        $user_type = $request->request->get('user_type');
         $args = [];
 //        Si le client n'est pas authentifié
-        if (is_null($user_type) || in_array($user_type, $type)) {
+        if (is_null($user)) {
             $args["type"] =  "unidentified";
             return $this->render("home/home.html.twig", $args);
         }
 
-        $args["type"] =  $user_type;
-        dump($request->request->get('user'));
+        $args["type"] =  $user->getRoles()[0];
         return $this->render("home/home.html.twig", $args);
     }
 

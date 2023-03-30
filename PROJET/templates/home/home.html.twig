@@ -5,6 +5,9 @@
     <h2>Menu</h2>
     {% if type == "unidentified" %}
         <p>Veuillez vous identifier</p>
+        <a href="{{ path('app_connect_user') }}">Se connecter</a>
+        <br>
+        <a href="{{ path('app_create_user') }}">Créer un compte</a>
     {% elseif type == "client" %}
         <p>menu du client</p>
     {% elseif type == "admin" %}

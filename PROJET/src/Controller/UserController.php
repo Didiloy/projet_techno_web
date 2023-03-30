@@ -18,11 +18,6 @@ class UserController extends AbstractController
     public function index(Request $request, EntityManagerInterface $em): Response
     {
         $args = [];
-//        Si le client n'est pas authentifié
-//        if (is_null($user_type) || in_array($user_type, $type)) {
-//            $args["type"] =  "unidentified";
-//            return $this->render("base.html.twig", $args);
-//        }
         $args["titre"] = "Create";
 
         $user = new User();
@@ -47,17 +42,9 @@ class UserController extends AbstractController
     #[Route('/connect', name: '_connect_user')]
     public function index2(Request $request, EntityManagerInterface $em): Response
     {
-        $type = ['client', 'admin', 'super-admin'];
-        $user_type = $request->request->get('user_type');
         $args = [];
         $args["titre"] = "Connect";
 //        Si le client n'est pas authentifié
-//        if (is_null($user_type) || in_array($user_type, $type)) {
-//            $args["type"] =  "unidentified";
-//            return $this->render("base.html.twig", $args);
-//        }
-        $args["type"] = $user_type;
-
         $userForm = new User();
         $form = $this->createForm(ConnectUserType::class, $userForm);
 
@@ -75,8 +62,6 @@ class UserController extends AbstractController
         }
 
         $args["form"] = $form;
-        dump($form);
-
         return $this->render('user/userForm.html.twig', $args);
     }
 }
