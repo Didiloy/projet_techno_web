@@ -2,20 +2,6 @@
 
 {% block body %}
     <h1>Bienvenue chez sac à d'eau</h1>
-    <h2>Menu</h2>
-    {% if type == "unidentified" %}
-        <p>Veuillez vous identifier</p>
-        <a href="{{ path('app_connect_user') }}">Se connecter</a>
-        <br>
-        <a href="{{ path('app_create_user') }}">Créer un compte</a>
-    {% elseif type == "client" %}
-        <p>menu du client</p>
-    {% elseif type == "admin" %}
-        <p>menu de l'admin</p>
-    {% elseif type == "super-admin" %}
-        <p>menu du super-admin</p>
-    {% endif %}
-
             <div id="vue">
                 {% block vue %}{% endblock %}
             </div>

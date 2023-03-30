@@ -9,11 +9,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('/user', name: 'app')]
 class UserController extends AbstractController
 {
+
+    private $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
     #[Route('/create', name: '_create_user')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
@@ -27,6 +36,7 @@ class UserController extends AbstractController
         //si on recoit le formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+            $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
             $userRepo = $em->getRepository(User::class);
             $userRepo->save($user);
             $em->flush();
@@ -36,32 +46,6 @@ class UserController extends AbstractController
 
         $args["form"] = $form;
 
-        return $this->render('user/userForm.html.twig', $args);
-    }
-
-    #[Route('/connect', name: '_connect_user')]
-    public function index2(Request $request, EntityManagerInterface $em): Response
-    {
-        $args = [];
-        $args["titre"] = "Connect";
-//        Si le client n'est pas authentifié
-        $userForm = new User();
-        $form = $this->createForm(ConnectUserType::class, $userForm);
-
-        $form->handleRequest($request);
-        //si on recoit le formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userForm = $form->getData();
-            $userRepo = $em->getRepository(User::class);
-            $user = $userRepo->findBy(['name'=> $userForm->getName()]);
-            if(is_null($user)){
-                //gerer l'erreur
-            }
-
-            return $this->redirectToRoute('app_home', $args);
-        }
-
-        $args["form"] = $form;
         return $this->render('user/userForm.html.twig', $args);
     }
 }
