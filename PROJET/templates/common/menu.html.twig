@@ -1,0 +1,18 @@
+<h2>Menu</h2>
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+    <p>menu du super-admin</p>
+    <a href="{{ path('app_logout') }}">Se déconnecter</a>
+{% elseif is_granted('ROLE_ADMIN') %}
+    <p>menu de l'admin</p>
+    <a href="{{ path('app_logout') }}">Se déconnecter</a>
+{% elseif is_granted('ROLE_CLIENT') %}
+    <p>menu du client</p>
+    <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    {#{% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}#}
+{% else %}
+    <p>Veuillez vous identifier</p>
+    <a href="{{ path('app_login') }}">Se connecter</a>
+    <br>
+    <a href="{{ path('app_create_user') }}">Créer un compte</a>
+{% endif %}
+<br>

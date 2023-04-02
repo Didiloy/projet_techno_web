@@ -18,13 +18,6 @@ class HomeController extends AbstractController
         if ($user !== null)dump($user);
 
         $args = [];
-//        Si le client n'est pas authentifié
-        if (is_null($user)) {
-            $args["type"] =  "unidentified";
-            return $this->render("home/home.html.twig", $args);
-        }
-
-        $args["type"] =  $user->getRoles()[0];
         return $this->render("home/home.html.twig", $args);
     }
 

@@ -14,27 +14,6 @@
     {% endblock %}
 </head>
 <body>
-{% if erreur is defined and erreur is not empty %}
-    <p style="color:red;">
-        {{ erreur }}
-    </p>
-{% endif %}
-
-<h2>Menu</h2>
-{% if type is not defined or type is empty or type == "unidentified" %}
-    <p>Veuillez vous identifier</p>
-    <a href="{{ path('app_login') }}">Se connecter</a>
-    <br>
-    <a href="{{ path('app_create_user') }}">Créer un compte</a>
-{% elseif type == "client" %}
-    <p>menu du client</p>
-{% elseif type == "admin" %}
-    <p>menu de l'admin</p>
-{% elseif type == "super-admin" %}
-    <p>menu du super-admin</p>
-{% endif %}
-<br>
 {% block body %}{% endblock %}
-<p>Bandeau de fin de page a remplacer par une image</p>
 </body>
 </html>

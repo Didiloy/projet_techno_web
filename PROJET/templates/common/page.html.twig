@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'common/erreur.html.twig' %}
+    {% include 'common/menu.html.twig' %}
+
+    <div id="main">
+        {% block content %}{% endblock %}
+    </div>
+    {% include 'common/bandeau.html.twig' %}
+{% endblock %}
