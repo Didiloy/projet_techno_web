@@ -1,0 +1,11 @@
+{% for messages in app.session.flashBag.get('notice') %}
+    <p class="flash">
+        {{ message }}
+    </p>
+{% endfor %}
+
+{% for message in app.flashes('notice') %}
+    <p class="flash">
+        {{ message }}
+    </p>
+{% endfor %}

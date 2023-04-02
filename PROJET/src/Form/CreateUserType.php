@@ -35,31 +35,17 @@ class CreateUserType extends AbstractType
                     'label' => 'Birth date',
                     'widget' => 'single_text',
                 ])
-            ->add('roles',
-                CollectionType::class,
-                [
-//                    'entry_type' => TextType::class,
-                    'entry_type'   => ChoiceType::class,
-                    'entry_options'  => [
-                        'choices'  => [
-                            'Client' => 'ROLE_CLIENT',
-                            'Admin'     => 'ROLE_ADMIN',
-                            'Super Admin'    => 'ROLE_SUPER_ADMIN',
-                        ],
-                    ],
-                ]
-            )
 //            ->add('roles',
-////                TextType::class,
-////                [
-////                    'label' => 'User type',
-////                    'attr' => ['placeholder' => 'Client'],
-////                ]
-//                ChoiceType::class, [
-//                    'choices'  => [
-//                        'Client' => ["client"],
-//                        'Admin' => ["admin"],
-//                        'Super-Admin' => ["super_admin"],
+//                CollectionType::class,
+//                [
+////                    'entry_type' => TextType::class,
+//                    'entry_type'   => ChoiceType::class,
+//                    'entry_options'  => [
+//                        'choices'  => [
+//                            'Client' => 'ROLE_CLIENT',
+//                            'Admin'     => 'ROLE_ADMIN',
+//                            'Super Admin'    => 'ROLE_SUPER_ADMIN',
+//                        ],
 //                    ],
 //                ]
 //            )

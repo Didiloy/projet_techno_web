@@ -2,11 +2,21 @@
 {% if is_granted('ROLE_SUPER_ADMIN') %}
     <p>menu du super-admin</p>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
+
 {% elseif is_granted('ROLE_ADMIN') %}
     <p>menu de l'admin</p>
+    <a href="https://fr.wikipedia.org/wiki/The_Truman_Show">The Truman Show</a>
+    <br>
+    <a href="{{ path('app_product') }}">Liste de tout les produits</a>
+    <br>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
+
 {% elseif is_granted('ROLE_CLIENT') %}
     <p>menu du client</p>
+    <p>nombre d'articles dans le panier</p>
+    <br>
+    <a href="{{ path('app_product') }}">Liste de tout les produits</a>
+    <br>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
     {#{% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}#}
 {% else %}

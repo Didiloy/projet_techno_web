@@ -1,0 +1,13 @@
+.error {
+    display: block;
+    background-color: red;
+    color: white;
+    font-size: larger;
+}
+
+.flash {
+    display: block;
+    background-color: #1b9448;
+    color: white;
+    font-size: larger;
+}
