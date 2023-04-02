@@ -47,7 +47,8 @@ security:
   access_control:
     - { path: ^/$, roles: PUBLIC_ACCESS }                      # page d'accueil publique
     - { path: ^/login, roles: PUBLIC_ACCESS }        # page de login publique (par définition)
-    - { path: ^/, roles: PUBLIC_ACCESS }         # autres pages : nécessité d'être authentifié
+    - { path: ^/modify, roles: ROLE_CLIENT }         # autres pages : nécessité d'être authentifié
+    - { path: ^/, roles: ROLE_CLIENT }         # autres pages : nécessité d'être authentifié
 #    - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }         # autres pages : nécessité d'être authentifié
     # - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }

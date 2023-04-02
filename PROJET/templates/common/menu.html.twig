@@ -1,13 +1,22 @@
 <h2>Menu</h2>
 {% if is_granted('ROLE_SUPER_ADMIN') %}
     <p>menu du super-admin</p>
+    <br>
+    <a href="{{ path('app_home') }}">Page d'acceuil</a>
+    <br>
+    <a href="{{ path('app_modify_user') }}">Modifier mon compte</a>
+    <br>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
 
 {% elseif is_granted('ROLE_ADMIN') %}
     <p>menu de l'admin</p>
     <a href="https://fr.wikipedia.org/wiki/The_Truman_Show">The Truman Show</a>
     <br>
+    <a href="{{ path('app_home') }}">Page d'acceuil</a>
+    <br>
     <a href="{{ path('app_product') }}">Liste de tout les produits</a>
+    <br>
+    <a href="{{ path('app_modify_user') }}">Modifier mon compte</a>
     <br>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
 
@@ -15,12 +24,19 @@
     <p>menu du client</p>
     <p>nombre d'articles dans le panier</p>
     <br>
+    <a href="{{ path('app_home') }}">Page d'acceuil</a>
+    <br>
     <a href="{{ path('app_product') }}">Liste de tout les produits</a>
+    <br>
+    <a href="{{ path('app_modify_user') }}">Modifier mon compte</a>
     <br>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
     {#{% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}#}
 {% else %}
     <p>Veuillez vous identifier</p>
+    <br>
+    <a href="{{ path('app_home') }}">Page d'acceuil</a>
+    <br>
     <a href="{{ path('app_login') }}">Se connecter</a>
     <br>
     <a href="{{ path('app_create_user') }}">Créer un compte</a>
