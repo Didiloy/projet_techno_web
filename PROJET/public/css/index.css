@@ -11,3 +11,10 @@
     color: white;
     font-size: larger;
 }
+
+.product {
+    height: 150px !important;
+    width: 200px !important;
+    border-radius: 8px;
+    object-fit: cover;
+}

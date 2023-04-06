@@ -1,5 +1,15 @@
 <form method="post">
     <p>Produit:</p><br>
+    <img
+            src="{{ absolute_url(asset('/img/product_' ~ product.id ~ '.jpg')) }}"
+            alt="{{ product.name }}"
+            style="height: 150px !important;
+                width: 200px !important;
+                border-radius: 8px;
+                 object-fit: cover;"
+            {#         class="product" #}
+            {#            Pour une raison inconnue le css fonctionne dans la balise style mais pas en donnant la classe à l'image #}
+    ></img>
     <p>nom: {{ product.name }}</p>
     <br>
     <p>prix: {{ product.prix }}</p>
