@@ -1,0 +1,11 @@
+{% extends 'common/page.html.twig' %}
+
+{% block content %}
+    <br>
+    <p>Liste d'utilisateurs</p>
+    <br>
+    {% for user in users %}
+        {% include 'user/userDetail.html.twig' with {'user': user} %}
+        <br>
+    {% endfor %}
+{% endblock %}

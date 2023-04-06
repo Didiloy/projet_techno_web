@@ -1,33 +1,37 @@
 <form method="post">
-    <p>Produit:</p><br>
-    <img
-            src="{{ absolute_url(asset('/img/product_' ~ product.id ~ '.jpg')) }}"
-            alt="{{ product.name }}"
-            style="height: 150px !important;
+    {#    Le css ne fonctionne pas avec la classe dans la div je ne sais pas pourquoi #}
+    <div class="user_div" style="background-color: whitesmoke;
+                                    font-size: larger;">
+        <p>Produit:</p><br>
+        <img
+                src="{{ absolute_url(asset('/img/product_' ~ product.id ~ '.jpg')) }}"
+                alt="{{ product.name }}"
+                style="height: 150px !important;
                 width: 200px !important;
                 border-radius: 8px;
                  object-fit: cover;"
-            {#         class="product" #}
-            {#            Pour une raison inconnue le css fonctionne dans la balise style mais pas en donnant la classe à l'image #}
-    ></img>
-    <p>nom: {{ product.name }}</p>
-    <br>
-    <p>prix: {{ product.prix }}</p>
-    <br>
-    <p>quantité en stock: {{ product.quantity }}</p>
-    <br>
-    {% if product.quantity is not null %}
-        <label for="quantity-select">Quantité voulue:</label>
-        <select name="quantity" id="quantity-select">
-            <option value="0">0</option>
-            {% for i in 0..product.quantity %}
-                <option value="{{ i }}">{{ i }}</option>
-            {% endfor %}
-        </select>
-        <button class="btn btn-lg btn-primary" type="submit">
-            modifier
-        </button>
-    {% else %}
-        <p>Le produit n'est pas disponible</p>
-    {% endif %}
+                {#         class="product" #}
+                {#            Pour une raison inconnue le css fonctionne dans la balise style mais pas en donnant la classe à l'image #}
+        ></img>
+        <p>nom: {{ product.name }}</p>
+        <br>
+        <p>prix: {{ product.prix }}</p>
+        <br>
+        <p>quantité en stock: {{ product.quantity }}</p>
+        <br>
+        {% if product.quantity is not null %}
+            <label for="quantity-select">Quantité voulue:</label>
+            <select name="quantity" id="quantity-select">
+                <option value="0">0</option>
+                {% for i in 0..product.quantity %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-lg btn-primary" type="submit">
+                modifier
+            </button>
+        {% else %}
+            <p>Le produit n'est pas disponible</p>
+        {% endif %}
+    </div>
 </form>

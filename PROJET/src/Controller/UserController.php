@@ -31,7 +31,7 @@ class UserController extends AbstractController
         $args["titre"] = "Create";
 
         $user = new User();
-        $form = $this->createForm(ProductController::class, $user);
+        $form = $this->createForm(CreateUserType::class, $user);
 
         $form->handleRequest($request);
         //si on recoit le formulaire
@@ -83,5 +83,31 @@ class UserController extends AbstractController
         $args["form"] = $form;
 
         return $this->render('user/userForm.html.twig', $args);
+    }
+
+    #[Route('/list', name: '_list_user')]
+    public function index3(Request $request, EntityManagerInterface $em): Response
+    {
+        $args = [];
+        $args["titre"] = "List";
+
+        $currentUser = $this->getUser();
+        $records = $em->getRepository(User::class)->findAll();
+        $args["users"] = $records;
+        //Handling the deletion
+        if(!is_null($request->get('id'))){
+            if($currentUser->getUsername() == $request->get('username')){
+                $this->addFlash(
+                    'notice',
+                    'Impossible de supprimer l\'utilisateur connecté!'
+                );
+                return $this->render('user/userList.html.twig', $args);
+            }
+            $user = $em->getRepository(User::class)->find($request->get('id'));
+            $em->remove($user);
+            $em->flush();
+            return $this->render('common/page.html.twig', $args);
+        }
+        return $this->render('user/userList.html.twig', $args);
     }
 }

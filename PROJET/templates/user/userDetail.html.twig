@@ -1,0 +1,29 @@
+<form method="post">
+{#    <p class="error">test</p>#}
+{#    Le css ne fonctionne pas avec la classe dans la div je ne sais pas pourquoi#}
+    <div class="user_div" style="background-color: whitesmoke;
+                                    font-size: larger;">
+        <p>Utilisateur:</p>
+        <p>id: {{ user.id }}</p>
+        <input type="hidden" name="id"
+               value="{{ user.id }}"
+        >
+        <p>nom: {{ user.username }}</p>
+        <input type="hidden" name="username"
+               value="{{ user.username }}"
+        >
+        <p>mot de passe: {{ user.password }}</p>
+        <input type="hidden" name="password"
+               value="{{ user.password }}"
+        >
+        <p>role: {{ user.roles[0] }}</p>
+        <input type="hidden" name="roles"
+               value="{{ user.roles[0] }}"
+        >
+        {% if 'ROLE_SUPER_ADMIN' not in user.roles[0] %}
+        <button class="btn btn-lg btn-primary" type="submit">
+            supprimer
+        </button>
+        {% endif %}
+    </div>
+</form>
