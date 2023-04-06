@@ -14,18 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/list', name: '_product_list')]
-    public function index(Request $request): Response
+    public function index(Request $request, EntityManagerInterface $em): Response
     {
-        //Dummy datas
         $args = [];
-        $args["products"] = [];
-        for ($i = 0; $i < 4; $i++) {
-            $product = new Product();
-            $product->setPrix($i*5.5);
-            $product->setName("produit " . $i);
-            $product->setQuantity($i);
-            array_push($args["products"], $product);
-        }
+        //get all products
+        $records = $em->getRepository(Product::class)->findAll();
+        $args["products"] = $records;
         return $this->render('products/productList.html.twig', $args);
     }
 
