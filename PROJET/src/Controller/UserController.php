@@ -31,7 +31,7 @@ class UserController extends AbstractController
         $args["titre"] = "Create";
 
         $user = new User();
-        $form = $this->createForm(CreateUserType::class, $user);
+        $form = $this->createForm(ProductController::class, $user);
 
         $form->handleRequest($request);
         //si on recoit le formulaire

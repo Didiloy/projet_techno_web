@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PHPUnit">
+    <option name="directories">
+      <list>
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/orm/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/common/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/instantiator/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/doctrine-bundle/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/persistence/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/event-manager/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/collections/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/dbal/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/doctrine-fixtures-bundle/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/inflector/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/lexer/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/nikic/php-parser/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/deprecations/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/migrations/tests" />
+        <option value="$PROJECT_DIR$/PROJET/vendor.old/doctrine/doctrine-migrations-bundle/tests" />
+      </list>
+    </option>
+  </component>
+</project>
