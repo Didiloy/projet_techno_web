@@ -39,7 +39,10 @@ class ProductController extends AbstractController
             $productRepo = $em->getRepository(Product::class);
             $productRepo->save($product);
             $em->flush();
-
+            $this->addFlash(
+                'notice',
+                'Le produit a bien été ajouté!'
+            );
             return $this->redirectToRoute('app_home', $args);
         }
 

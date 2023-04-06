@@ -39,7 +39,7 @@ security:
       # switch_user: true
 
   role_hierarchy:
-    ROLE_SUPER_ADMIN: ROLE_ADMIN
+    ROLE_SUPER_ADMIN: ROLE_CLIENT
     ROLE_ADMIN: ROLE_CLIENT
 
   # Easy way to control access for large sections of your site
@@ -47,7 +47,7 @@ security:
   access_control:
     - { path: ^/$, roles: PUBLIC_ACCESS }                      # page d'accueil publique
     - { path: ^/login, roles: PUBLIC_ACCESS }        # page de login publique (par définition)
-    - { path: ^/modify, roles: ROLE_CLIENT }         # autres pages : nécessité d'être authentifié
+    - { path: ^/product/create, roles: ROLE_ADMIN }         # autres pages : nécessité d'être authentifié
     - { path: ^/, roles: ROLE_CLIENT }         # autres pages : nécessité d'être authentifié
 #    - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }         # autres pages : nécessité d'être authentifié
     # - { path: ^/admin, roles: ROLE_ADMIN }
