@@ -1,0 +1,23 @@
+<form method="post">
+    <p>Produit:</p><br>
+    <p>nom: {{ product.name }}</p>
+    <br>
+    <p>prix: {{ product.prix }}</p>
+    <br>
+    <p>quantité en stock: {{ product.quantity }}</p>
+    <br>
+    {% if product.quantity is not null %}
+        <label for="quantity-select">Quantité voulue:</label>
+        <select name="quantity" id="quantity-select">
+            <option value="0">0</option>
+            {% for i in 0..product.quantity %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-lg btn-primary" type="submit">
+            modifier
+        </button>
+    {% else %}
+        <p>Le produit n'est pas disponible</p>
+    {% endif %}
+</form>

@@ -4,4 +4,8 @@
     <br>
     <p>Liste de produits</p>
     <br>
+    {% for product in products %}
+        {% include 'products/productDetail.html.twig' with {'product': product} %}
+        <br>
+    {% endfor %}
 {% endblock %}
