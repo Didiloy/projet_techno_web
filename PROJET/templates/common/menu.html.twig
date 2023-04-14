@@ -1,6 +1,13 @@
 <h2>Menu</h2>
 {% if is_granted('ROLE_SUPER_ADMIN') %}
-    <p>menu du super-admin</p>
+    <img
+            src="{{ absolute_url(asset('/img/image_admin.jpg')) }}"
+            alt="image super-admin"
+            style="height: 150px !important;
+                width: 200px !important;
+                border-radius: 8px;
+                 object-fit: cover;"
+    ></img>
     <br>
     <a href="{{ path('app_home') }}">Page d'acceuil</a>
     <br>
@@ -9,7 +16,15 @@
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
 
 {% elseif is_granted('ROLE_ADMIN') %}
-    <p>menu de l'admin</p>
+    <img
+            src="{{ absolute_url(asset('/img/image_admin.jpg')) }}"
+            alt="image admin"
+            style="height: 150px !important;
+                width: 200px !important;
+                border-radius: 8px;
+                 object-fit: cover;"
+    ></img>
+    <br>
     <a href="https://fr.wikipedia.org/wiki/The_Truman_Show">The Truman Show</a>
     <br>
     <a href="{{ path('app_home') }}">Page d'acceuil</a>
@@ -25,7 +40,15 @@
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
 
 {% elseif is_granted('ROLE_CLIENT') %}
-    <p>menu du client</p>
+    <img
+            src="{{ absolute_url(asset('/img/image_client.jpg')) }}"
+            alt="image client"
+            style="height: 150px !important;
+                width: 200px !important;
+                border-radius: 8px;
+                 object-fit: cover;"
+    ></img>
+    <br>
     <p>nombre d'articles dans le panier</p>
     <br>
     <a href="{{ path('app_home') }}">Page d'acceuil</a>
@@ -37,6 +60,15 @@
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
     {#{% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}#}
 {% else %}
+    <img
+            src="{{ absolute_url(asset('/img/image_non_id.jpg')) }}"
+            alt="image non connecté"
+            style="height: 150px !important;
+                width: 200px !important;
+                border-radius: 8px;
+                 object-fit: cover;"
+    ></img>
+    <br>
     <p>Veuillez vous identifier</p>
     <br>
     <a href="{{ path('app_home') }}">Page d'acceuil</a>
