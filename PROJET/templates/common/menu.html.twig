@@ -13,6 +13,8 @@
     <br>
     <a href="{{ path('app_modify_user') }}">Modifier mon compte</a>
     <br>
+    <a href="{{ path('app_create_admin') }}">Créer un administrateur</a>
+    <br>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
 
 {% elseif is_granted('ROLE_ADMIN') %}

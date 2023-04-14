@@ -1,4 +1,4 @@
-{% for messages in app.session.flashBag.get('notice') %}
+{% for message in app.session.flashBag.get('notice') %}
     <p class="flash">
         {{ message }}
     </p>

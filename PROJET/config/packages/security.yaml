@@ -48,6 +48,7 @@ security:
     - { path: ^/$, roles: PUBLIC_ACCESS }                      # page d'accueil publique
     - { path: ^/login, roles: PUBLIC_ACCESS }        # page de login publique (par définition)
     - { path: ^/user/create, roles: PUBLIC_ACCESS }        # page de login publique (par définition)
+    - { path: ^/user/create/admin, roles: ROLE_SUPER_ADMIN }         # autres pages : nécessité d'être authentifié
     - { path: ^/product/create, roles: ROLE_ADMIN }         # autres pages : nécessité d'être authentifié
     - { path: ^/, roles: ROLE_CLIENT }         # autres pages : nécessité d'être authentifié
 #    - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }         # autres pages : nécessité d'être authentifié

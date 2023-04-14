@@ -51,6 +51,33 @@ class UserController extends AbstractController
         return $this->render('user/userForm.html.twig', $args);
     }
 
+    #[Route('/create/admin', name: '_create_admin')]
+    public function index4(Request $request, EntityManagerInterface $em): Response
+    {
+        $args = [];
+        $args["titre"] = "Create";
+
+        $user = new User();
+        $form = $this->createForm(CreateUserType::class, $user);
+
+        $form->handleRequest($request);
+        //si on recoit le formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+            $user->setRoles(['ROLE_ADMIN']);
+            $userRepo = $em->getRepository(User::class);
+            $userRepo->save($user);
+            $em->flush();
+
+            return $this->redirectToRoute('app_home', $args);
+        }
+
+        $args["form"] = $form;
+
+        return $this->render('user/userForm.html.twig', $args);
+    }
+
     #[Route('/modify', name: '_modify_user')]
     public function index2(Request $request, EntityManagerInterface $em): Response
     {
