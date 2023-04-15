@@ -3,6 +3,34 @@
 {% block title %}Panier{% endblock %}
 
 {% block content %}
-
-
+    {% set total = 0 %}
+    {% for product in productsInCart %}
+        <div class="user_div" style="background-color: whitesmoke;
+                                    font-size: larger;">
+            <p>Produit:</p><br>
+            <img
+                    src="{{ absolute_url(asset('/img/product_' ~ product['product'].id ~ '.jpg')) }}"
+                    alt="{{ product['product'].name }}"
+                    style="height: 150px !important;
+                width: 200px !important;
+                border-radius: 8px;
+                 object-fit: cover;"
+                    {#         class="product" #}
+                    {#            Pour une raison inconnue le css fonctionne dans la balise style mais pas en donnant la classe à l'image #}
+            ></img>
+            <p>nom: {{ product['product'].name }}</p>
+            <br>
+            <p>prix unitaire: {{ product['product'].prix }}</p>
+            <br>
+            <p>quantité en stock: {{ product['product'].quantity }}</p>
+            <br>
+            <p>quantité dans le panier: {{ product['quantity'] }}</p>
+        </div>
+        {% set total = total + (product['product'].prix * product['quantity']) %}
+    {% endfor %}
+    <p>total: {{ total }}€</p>
+    <br>
+    <a href="">Passer la commande</a>
+    <br>
+    <a href="">Vider le panier</a>
 {% endblock %}

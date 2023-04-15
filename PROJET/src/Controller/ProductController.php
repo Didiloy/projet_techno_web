@@ -21,7 +21,7 @@ class ProductController extends AbstractController
         //get all products
         $records = $em->getRepository(Product::class)->findAll();
         $args["products"] = $records;
-
+        $args["quantitiesInCart"] = $this->howMuchProductInCart();
         //verify if a post form has been received to add the product to the cart
         if ($request->isMethod('POST') && $request->request->get("quantity") != 0) {
             $this->addProductToCart($request, $em);
@@ -37,7 +37,7 @@ class ProductController extends AbstractController
         $modified = false;
         foreach ($carts as $c) {
             if ($c->getIdProduct()->getId() == $product->getId()) {
-                $c->setQuantity($c->getQuantity()  + $r->request->get('quantity'));
+                $c->setQuantity($c->getQuantity() + $r->request->get('quantity'));
                 $em->persist($c);
                 $em->flush();
                 $modified = true;
@@ -53,6 +53,17 @@ class ProductController extends AbstractController
             $em->persist($cart);
             $em->flush();
         }
+    }
+
+    public function howMuchProductInCart(): array
+    {
+        //create an associative array containing the id of the products in the cart and the quantity of each product
+        $carts = $this->getUser()->getCart();
+        $products = [];
+        foreach ($carts as $c) {
+            $products[$c->getIdProduct()->getId()] = $c->getQuantity();
+        }
+        return $products;
     }
 
     #[Route('/create', name: '_product_create')]

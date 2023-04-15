@@ -5,7 +5,8 @@
     <p>Liste de produits</p>
     <br>
     {% for product in products %}
-        {% include 'products/productDetail.html.twig' with {'product': product} %}
+        {% set quantite = quantitiesInCart[product.id]|default(0) %}
+        {% include 'products/productDetail.html.twig' with {'product': product, 'quantiteInCart': quantite} %}
         <br>
     {% endfor %}
 {% endblock %}

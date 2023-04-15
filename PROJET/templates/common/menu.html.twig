@@ -39,6 +39,8 @@
     <br>
     <a href="{{ path('app_modify_user') }}">Modifier mon compte</a>
     <br>
+    <a href="{{ path('app_cart') }}">Voir mon panier</a>
+    <br>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
 
 {% elseif is_granted('ROLE_CLIENT') %}
@@ -51,13 +53,13 @@
                  object-fit: cover;"
     ></img>
     <br>
-    <p>nombre d'articles dans le panier</p>
-    <br>
     <a href="{{ path('app_home') }}">Page d'acceuil</a>
     <br>
     <a href="{{ path('app_product_list') }}">Liste de tout les produits</a>
     <br>
     <a href="{{ path('app_modify_user') }}">Modifier mon compte</a>
+    <br>
+    <a href="{{ path('app_cart') }}">Voir mon panier</a>
     <br>
     <a href="{{ path('app_logout') }}">Se déconnecter</a>
     {#{% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}#}

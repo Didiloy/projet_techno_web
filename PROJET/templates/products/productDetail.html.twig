@@ -27,7 +27,7 @@
             <label for="quantity-select">Quantité voulue:</label>
             <select name="quantity" id="quantity-select">
                 <option value="0">0</option>
-                {% for i in 0..product.quantity %}
+                {% for i in -quantiteInCart..product.quantity %}
                     <option value="{{ i }}">{{ i }}</option>
                 {% endfor %}
             </select>
