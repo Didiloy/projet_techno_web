@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Cart;
 use App\Entity\Product;
 use App\Form\ProductFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,8 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-#[Route('/product', name: 'app')]
 
+#[Route('/product', name: 'app')]
 class ProductController extends AbstractController
 {
     #[Route('/list', name: '_product_list')]
@@ -20,7 +21,38 @@ class ProductController extends AbstractController
         //get all products
         $records = $em->getRepository(Product::class)->findAll();
         $args["products"] = $records;
+
+        //verify if a post form has been received to add the product to the cart
+        if ($request->isMethod('POST') && $request->request->get("quantity") != 0) {
+            $this->addProductToCart($request, $em);
+        }
         return $this->render('products/productList.html.twig', $args);
+    }
+
+    public function addProductToCart(Request $r, EntityManagerInterface $em)
+    {
+        $product = $em->getRepository(Product::class)->find($r->request->get('id'));
+        //verify if the user already have a cart with the same product to change the quantity instead of adding a new cart
+        $carts = $this->getUser()->getCart();
+        $modified = false;
+        foreach ($carts as $c) {
+            if ($c->getIdProduct()->getId() == $product->getId()) {
+                $c->setQuantity($c->getQuantity()  + $r->request->get('quantity'));
+                $em->persist($c);
+                $em->flush();
+                $modified = true;
+            }
+        }
+        if (!$modified) {
+            //create a new cart and add the user and the product to the cart
+            $cart = new Cart();
+            $cart->setIdUser($this->getUser());
+            $cart->setIdProduct($product);
+            $cart->setQuantity($r->request->get('quantity'));
+            $this->getUser()->addCart($cart);
+            $em->persist($cart);
+            $em->flush();
+        }
     }
 
     #[Route('/create', name: '_product_create')]

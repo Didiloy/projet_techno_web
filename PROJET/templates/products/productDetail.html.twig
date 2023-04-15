@@ -14,10 +14,14 @@
                 {#            Pour une raison inconnue le css fonctionne dans la balise style mais pas en donnant la classe à l'image #}
         ></img>
         <p>nom: {{ product.name }}</p>
+        <input type="hidden" name="id" value="{{ product.id }}"/>
+        <input type="hidden" name="nom" value="{{ product.name }}"/>
         <br>
         <p>prix: {{ product.prix }}</p>
+        <input type="hidden" name="prix" value="{{ product.prix }}"/>
         <br>
         <p>quantité en stock: {{ product.quantity }}</p>
+        <input type="hidden" name="quantite" value="{{ product.quantity}}"/>
         <br>
         {% if product.quantity is not null %}
             <label for="quantity-select">Quantité voulue:</label>
