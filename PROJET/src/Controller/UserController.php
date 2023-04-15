@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\ConnectUserType;
 use App\Form\CreateUserType;
 use App\Form\ModifyUserType;
+use App\Service\PasswordVerificator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,7 @@ class UserController extends AbstractController
         $this->passwordHasher = $passwordHasher;
     }
     #[Route('/create', name: '_create_user')]
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index(Request $request, EntityManagerInterface $em, PasswordVerificator $pv): Response
     {
         $args = [];
         $args["titre"] = "Create";
@@ -37,6 +38,14 @@ class UserController extends AbstractController
         //si on recoit le formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+            if(!$pv->verifyPassword($user->getPassword())){
+                $this->addFlash(
+                    'notice',
+                    'Mot de passe non sécurisé. Veuillez en choisir un autre!'
+                );
+                $args["form"] = $form;
+                return $this->render('user/userForm.html.twig', $args);
+            }
             $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
             $user->setRoles(['ROLE_CLIENT']);
             $userRepo = $em->getRepository(User::class);
