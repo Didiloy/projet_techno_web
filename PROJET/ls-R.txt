@@ -1,0 +1,7 @@
+config/:
+services.yaml
+
+config/packages/:
+security.yaml web_profiler.yaml
+
+config/routes/:
