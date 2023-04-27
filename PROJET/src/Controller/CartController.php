@@ -39,6 +39,10 @@ class CartController extends AbstractController
         //empty the cart of the user
         foreach ($carts as $c) {
             $em->remove($c);
+            //update the quantity of the product in the database
+            $product = $em->getRepository(Product::class)->find($c->getIdProduct());
+            $product->setQuantity($product->getQuantity() + $c->getQuantity());
+            $em->persist($product);
             $em->flush();
         }
 
