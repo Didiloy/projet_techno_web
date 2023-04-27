@@ -53,6 +53,9 @@ class ProductController extends AbstractController
             $em->persist($cart);
             $em->flush();
         }
+
+        //update the quantity in the database
+        $product->setQuantity($product->getQuantity() - $r->request->get('quantity'));
     }
 
     public function howMuchProductInCart(): array
