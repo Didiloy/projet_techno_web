@@ -48,4 +48,21 @@ class CartController extends AbstractController
 
         return $this->render('home/home.html.twig', $args);
     }
+
+    #[Route('/cart/confirm', name: 'app_cart_confirm')]
+    public function index3(Request $r, EntityManagerInterface $em): Response
+    {
+        $args = [];
+        //get all the carts of the user
+        $carts = $this->getUser()->getCart();
+
+        //empty the cart of the user
+        foreach ($carts as $c) {
+            $em->remove($c);
+            $em->flush();
+            //do not update the quantity of the product in the database
+        }
+
+        return $this->render('home/home.html.twig', $args);
+    }
 }

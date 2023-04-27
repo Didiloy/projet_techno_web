@@ -30,7 +30,7 @@
     {% endfor %}
     <p>total: {{ total }}€</p>
     <br>
-    <a href="">Passer la commande</a>
+    <a href="{{ path('app_cart_confirm') }}">Passer la commande</a>
     <br>
     <a href="{{ path('app_cart_delete') }}">Vider le panier</a>
 {% endblock %}
