@@ -36,13 +36,6 @@ class CartController extends AbstractController
         //get all the carts of the user
         $carts = $this->getUser()->getCart();
 
-        //get all the products of all the carts of the user
-        $productsInCart = [];
-        foreach ($carts as $c) {
-            $product = $em->getRepository(Product::class)->find($c->getIdProduct());
-            $productsInCart[] = array("product" =>$product, "quantity" => $c->getQuantity());
-        }
-
         //empty the cart of the user
         foreach ($carts as $c) {
             $em->remove($c);

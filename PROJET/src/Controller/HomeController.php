@@ -18,7 +18,6 @@ class HomeController extends AbstractController
         if ($user !== null)dump($user);
 
         $args = [];
-//        $args["erreur"] = "erreur my g";
         return $this->render("home/home.html.twig", $args);
     }
 
