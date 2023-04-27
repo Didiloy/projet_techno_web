@@ -28,4 +28,27 @@ class CartController extends AbstractController
 
         return $this->render('cart/cart.html.twig', $args);
     }
+
+    #[Route('/cart/delete', name: 'app_cart_delete')]
+    public function index2(Request $r, EntityManagerInterface $em): Response
+    {
+        $args = [];
+        //get all the carts of the user
+        $carts = $this->getUser()->getCart();
+
+        //get all the products of all the carts of the user
+        $productsInCart = [];
+        foreach ($carts as $c) {
+            $product = $em->getRepository(Product::class)->find($c->getIdProduct());
+            $productsInCart[] = array("product" =>$product, "quantity" => $c->getQuantity());
+        }
+
+        //empty the cart of the user
+        foreach ($carts as $c) {
+            $em->remove($c);
+            $em->flush();
+        }
+
+        return $this->render('home/home.html.twig', $args);
+    }
 }
